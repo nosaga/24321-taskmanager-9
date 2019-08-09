@@ -1,17 +1,13 @@
 'use strict';
+
 const main = document.querySelector(`.main`);
 const mainControl = document.querySelector(`.main__control`);
 
+/* helper fucntions */
+const getRandom = (min, max) => Math.floor(min + Math.random() * (max + 1 - min));
 
-/*helper fucntions*/
-const getRandom = function (min, max) {
-  let rand = min + Math.random() * (max + 1 - min);
-  return Math.floor(rand);
-};
-
-
-/*mock data*/
-const cards = [`blue`, `yellow`, `green`, `black`, `pink`, `red`, `black`];
+/* mock data */
+// const cards = [`blue`, `yellow`, `green`, `black`, `pink`, `red`, `black`];
 const filters = [
   {name: `All`, num: getRandom(0, 30)},
   {name: `Overdue`, num: getRandom(0, 30)},
@@ -22,26 +18,24 @@ const filters = [
   {name: `Archive`, num: getRandom(0,30)}
 ];
 
-
-
-const getMenu = function(caption, item) {
+const getMenu = (caption, item) => {
   return `
       <input type="radio" name="control" id="control__new-task" class="control__input visually-hidden">
       <label for="control__${caption.toLowerCase()}" class="control__label control__label--${caption.toLowerCase()}">${item}</label>
   `
 };
 
-const getMenuWrapper = function(caption, item) {
+const getMenuWrapper = () => {
   return `
     <section class="control__btn-wrap">
-          ${getMenu('new-task', '+ADD NEW TASK')}
-          ${getMenu('task', 'TASKS')}
-          ${getMenu('statistics', 'STATISTICS')}
+          ${getMenu(`new-task`, `+ADD NEW TASK`)}
+          ${getMenu(`task`, `TASKS`)}
+          ${getMenu(`statistics`, `STATISTICS`)}
       </section>
   `
 };
 
-const getFilters = function () {
+const getFilters = () => {
   return `
       <section class="main__filter filter container">
         ${filters.map((filter) => {
@@ -52,7 +46,7 @@ const getFilters = function () {
   `
 };
 
-const getSort = function () {
+const getSort = () => {
   return `
     <div class="board__filter-list">
           <a href="#" class="board__filter">SORT BY DEFAULT</a>
@@ -130,7 +124,7 @@ const getSort = function () {
 //   `})
 // };
 
-const getCards = function () {
+const getCards = () => {
     return `
         <article class="card card--blue">
         <div class="card__form">
@@ -383,7 +377,7 @@ const getCards = function () {
   `
 };
 
-const getCardEdit = function () {
+const getCardEdit = () => {
   return `
     <article class="card card--edit card--yellow card--repeat">
             <form class="card__form" method="get">
@@ -655,7 +649,7 @@ const getCardEdit = function () {
   `
 };
 
-const getCardsAll = function () {
+const getCardsAll = () => {
   return `
   <div class="board__tasks">
     ${getCards()}
@@ -664,7 +658,7 @@ const getCardsAll = function () {
   `
 };
 
-const getContent = function () {
+const getContent = () => {
   return ` 
     <section class="board container">
       ${getSort()}   
@@ -673,8 +667,7 @@ const getContent = function () {
   </section>`
 };
 
-
-const getSearch = function() {
+const getSearch = () => {
   return `
     <section class="main__search search container">
       <input type="text" id="search__input" class="search__input" placeholder="START TYPING — SEARCH BY WORD, #HASHTAG OR DATE">
@@ -683,7 +676,7 @@ const getSearch = function() {
   `
 };
 
-const getLoad = function () {
+const getLoad = () => {
   return `
     <button class="load-more" type="button">load more</button>
   `
